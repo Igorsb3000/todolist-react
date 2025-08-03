@@ -8,10 +8,10 @@ import "./TodoApp.css";
 // Deletar itens com uma função e evento - feito
 // Editar itens - feito
 // Adicionar checkbox para marcar como concluído - feito
+// Responsividade - feito
+// Ajuste automático de textos grandes - feito
 
 // A fazer:
-// Responsividade
-// Ajsute automático de textos grandes
 // Acessibilidade
 
 const TodoApp = () => {
