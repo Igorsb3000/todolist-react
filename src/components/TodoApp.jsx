@@ -84,83 +84,85 @@ const TodoApp = () => {
   };
 
   return (
-    <div className="app-container">
-      <h1 className="title">To-do List</h1>
-      {/* Formulário para adicionar novas tarefas*/}
-      <form className="form-container" onSubmit={handleSubmit}>
-        {/* Input */}
-        <input
-          className="input-field"
-          type="text"
-          placeholder="Adicione uma tarefa..."
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onBlur={saveEdit}
-        ></input>
-        <button type="submit" className="bi bi-plus btn btn-success ">
-          Adicionar
-        </button>
-      </form>
+    <div className="background">
+      <div className="app-container">
+        <h1 className="title">To-do List</h1>
+        {/* Formulário para adicionar novas tarefas*/}
+        <form className="form-container" onSubmit={handleSubmit}>
+          {/* Input */}
+          <input
+            className="input-field"
+            type="text"
+            placeholder="Adicione uma tarefa..."
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onBlur={saveEdit}
+          ></input>
+          <button type="submit" className="bi bi-plus btn btn-success ">
+            Adicionar
+          </button>
+        </form>
 
-      {/* Lista de tarefas*/}
-      {todos.length === 0 && <p className="empty">Não há tarefas.</p>}
-      <ul className="todo-list">
-        {todos.map((todo) => {
-          return editingId === todo.id ? (
-            <div className="todo-item">
-              <input
-                key={todo.id}
-                type="text"
-                className="input-field"
-                value={draft}
-                onChange={(e) => setDraft(e.target.value)}
-                onBlur={saveEdit}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter") {
-                    saveEdit();
-                  }
-                }}
-                autoFocus
-              ></input>
-              <button
-                className="bi bi-check btn btn-success"
-                onClick={saveEdit}
-              ></button>
-            </div>
-          ) : (
-            <li key={todo.id} className="todo-item">
-              <div className="text-responsive">
+        {/* Lista de tarefas*/}
+        {todos.length === 0 && <p className="empty">Não há tarefas.</p>}
+        <ul className="todo-list">
+          {todos.map((todo) => {
+            return editingId === todo.id ? (
+              <div className="todo-item">
                 <input
-                  type="checkbox"
-                  className="check-item"
-                  checked={todo.check}
-                  onChange={(e) => {
-                    handleCheck(todo.id, e.target.checked);
+                  key={todo.id}
+                  type="text"
+                  className="input-field"
+                  value={draft}
+                  onChange={(e) => setDraft(e.target.value)}
+                  onBlur={saveEdit}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") {
+                      saveEdit();
+                    }
                   }}
+                  autoFocus
                 ></input>
-                <span className={todo.check ? "text-risk" : ""}>
-                  {todo.text}
-                </span>
+                <button
+                  className="bi bi-check btn btn-success"
+                  onClick={saveEdit}
+                ></button>
               </div>
+            ) : (
+              <li key={todo.id} className="todo-item">
+                <div className="text-responsive">
+                  <input
+                    type="checkbox"
+                    className="check-item"
+                    checked={todo.check}
+                    onChange={(e) => {
+                      handleCheck(todo.id, e.target.checked);
+                    }}
+                  ></input>
+                  <span className={todo.check ? "text-risk" : ""}>
+                    {todo.text}
+                  </span>
+                </div>
 
-              <div className="todo-actions">
-                <button
-                  className="bi bi-pencil btn btn-primary"
-                  onClick={() => {
-                    startEdit(todo);
-                  }}
-                ></button>
-                <button
-                  className="bi bi-trash btn btn-danger"
-                  onClick={() => {
-                    handleDelete(todo.id);
-                  }}
-                ></button>
-              </div>
-            </li>
-          );
-        })}
-      </ul>
+                <div className="todo-actions">
+                  <button
+                    className="bi bi-pencil btn btn-primary"
+                    onClick={() => {
+                      startEdit(todo);
+                    }}
+                  ></button>
+                  <button
+                    className="bi bi-trash btn btn-danger"
+                    onClick={() => {
+                      handleDelete(todo.id);
+                    }}
+                  ></button>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   );
 };
