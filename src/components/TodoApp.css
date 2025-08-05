@@ -31,9 +31,12 @@ span {
 }
 
 .empty {
-  color: #9e9e9e;
+  color: #3e3e3e;
+  display: flex;
+  justify-content: center;
   text-align: center;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 28px;
 }
 
 .app-container {
