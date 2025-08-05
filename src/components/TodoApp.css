@@ -7,10 +7,15 @@
 body {
   font-family: Helvetica;
 }
+
 .background {
-  background-color: #a45656;
+  position: absolute;
+  background: #f5f5f5;
+  backdrop-filter: blur(20px);
+  min-height: 100vh;
   width: 100%;
-  height: 100vh;
+  padding: 0;
+  margin: 0;
 }
 
 span {
@@ -18,7 +23,7 @@ span {
 }
 
 .title {
-  color: #ff5722; /*#6200ee;*/
+  color: #0078d4;
   font-size: 36px;
   text-align: center;
   text-decoration: double;
@@ -37,12 +42,14 @@ span {
   padding: 20px;
   background: linear-gradient(
     135deg,
-    rgba(255, 126, 95, 0.38),
-    rgba(254, 180, 123, 0.38)
+    #e6f2ff 0%,
+    #c0d9ff 50%,
+    #99c2ff 70%,
+    #66a3ff 100%
   );
   backdrop-filter: blur(20px);
   border: 1px solid #ddd;
-  box-shadow: #9e9e9e 0px 3px 10px;
+  box-shadow: #9e9e9e -5px 15px 15px;
   border-radius: 10px;
 }
 
@@ -90,7 +97,7 @@ span {
 
 .text-risk {
   text-decoration: line-through;
-  color: #272727;
+  color: #adabac;
 }
 
 .text-responsive {
