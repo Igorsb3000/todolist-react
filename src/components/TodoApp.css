@@ -70,6 +70,12 @@ span {
   margin-right: 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
+  border: none;
+}
+
+.input-field:focus {
+  outline: none;
+  border: none;
 }
 
 .todo-list {
@@ -109,4 +115,9 @@ span {
   max-width: 85%; /* nunca passa do container */
   overflow-wrap: break-word; /* quebra palavras extensas */
   word-break: break-word; /* fallback extra */
+}
+
+.modal {
+  height: 500px;
+  width: 500px;
 }
