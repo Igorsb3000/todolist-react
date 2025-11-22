@@ -1,0 +1,13 @@
+.input-field {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  border: none;
+}
+
+.input-field:focus {
+  outline: none;
+  border: none;
+}

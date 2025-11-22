@@ -1,0 +1,23 @@
+.text-responsive {
+  justify-content: center;
+  display: inline; /* dá dimensões ao span */
+  max-width: 85%; /* nunca passa do container */
+  overflow-wrap: break-word; /* quebra palavras extensas */
+  word-break: break-word; /* fallback extra */
+}
+
+.check-item {
+  scale: 1.8;
+  margin: 5px;
+  margin-right: 15px;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.text-risk {
+  text-decoration: line-through;
+  color: #adabac;
+}

@@ -1,20 +1,8 @@
 import { useState, useEffect } from "react";
 import "./TodoApp.css";
-import { Modal, Button } from "react-bootstrap";
-
-// DESAFIOS:
-
-// Salvar itens em localStorage - feito
-// Carregar os itens com useEffect - feito
-// Deletar itens com uma função e evento - feito
-// Editar itens - feito
-// Adicionar checkbox para marcar como concluído - feito
-// Responsividade - feito
-// Ajuste automático de textos grandes - feito
-// Modal de confirmação para exclusão de tarefa - feito
-
-// A fazer:
-// Acessibilidade
+import DeleteModal from "./DeleteModal";
+import AddNewTask from "./AddNewTask";
+import List from "./List";
 
 const TodoApp = () => {
   // Lista de tarefas
@@ -89,110 +77,33 @@ const TodoApp = () => {
     <div className="background">
       <div className="app-container">
         <h1 className="title">To-do List</h1>
-        {/* Formulário para adicionar novas tarefas*/}
-        <form className="form-container" onSubmit={handleSubmit}>
-          {/* Input */}
-          <input
-            className="input-field"
-            type="text"
-            placeholder="Adicione uma tarefa..."
-            value={inputValue}
-            onChange={(e) => setInputValue(e.target.value)}
-            onBlur={saveEdit}
-          ></input>
-          <button type="submit" className="bi bi-plus btn btn-success ">
-            Adicionar
-          </button>
-        </form>
+        {/* Formulário para adicionar nova tarefa*/}
+        <AddNewTask
+          handleSubmit={handleSubmit}
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          saveEdit={saveEdit}
+        ></AddNewTask>
 
         {/* Lista de tarefas*/}
-        {todos.length === 0 && <p className="empty">Não há tarefas.</p>}
-        <ul className="todo-list">
-          {todos.map((todo) => {
-            return (
-              <li key={todo.id} className="todo-item">
-                {editingId === todo.id ? (
-                  <>
-                    <input
-                      key={todo.id}
-                      type="text"
-                      className="input-field"
-                      value={draft}
-                      onChange={(e) => setDraft(e.target.value)}
-                      onBlur={saveEdit}
-                      onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          saveEdit();
-                        }
-                      }}
-                      autoFocus
-                    ></input>
-                    <button
-                      className="bi bi-check btn btn-success"
-                      onClick={saveEdit}
-                    ></button>
-                  </>
-                ) : (
-                  <>
-                    <div className="text-responsive">
-                      <input
-                        type="checkbox"
-                        className="check-item"
-                        checked={todo.check}
-                        onChange={(e) => {
-                          handleCheck(todo.id, e.target.checked);
-                        }}
-                      ></input>
-                      <span className={todo.check ? "text-risk" : ""}>
-                        {todo.text}
-                      </span>
-                    </div>
+        <List
+          todos={todos}
+          editingId={editingId}
+          draft={draft}
+          setDraft={setDraft}
+          saveEdit={saveEdit}
+          handleCheck={handleCheck}
+          startEdit={startEdit}
+          setIsOpen={setIsOpen}
+          setIdTarefaExcluir={setIdTarefaExcluir}
+        ></List>
 
-                    <div className="todo-actions">
-                      <button
-                        className="bi bi-pencil btn btn-primary"
-                        onClick={() => {
-                          startEdit(todo);
-                        }}
-                      ></button>
-                      <button
-                        className="bi bi-trash btn btn-danger"
-                        onClick={() => {
-                          setIsOpen(true);
-                          setIdTarefaExcluir(todo.id);
-                        }}
-                      ></button>
-                    </div>
-                  </>
-                )}
-              </li>
-            );
-          })}
-        </ul>
-        <Modal show={isOpen} onHide={() => setIsOpen(false)} centered>
-          <Modal.Header closeButton>
-            <Modal.Title className="w-100 text-center">
-              Confirmar exclusão da tarefa
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="w-100 text-center">
-            Você tem certeza que deseja excluir esta tarefa?
-          </Modal.Body>
-          <Modal.Footer className="justify-content-center">
-            <Button variant="secondary" onClick={() => setIsOpen(false)}>
-              Cancelar
-            </Button>
-            <Button
-              variant="danger"
-              onClick={() => {
-                handleDelete();
-                setIsOpen(false);
-              }}
-            >
-              Excluir
-            </Button>
-          </Modal.Footer>
-        </Modal>
+        {/*Modal de confirmação de exclusão */}
+        <DeleteModal
+          handleDelete={handleDelete}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        ></DeleteModal>
       </div>
     </div>
   );
